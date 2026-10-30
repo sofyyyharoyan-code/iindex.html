@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warner Bros. Discovery | Strategic Financial Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#07111f;--panel:rgba(16, 30, 48, 0.75);--panel2:rgba(20, 38, 59, 0.85);--text:#f4f5f7;
+--muted:#a8b5c5;--gold:#d9b66f;--gold2:#f0d69c;--line:rgba(217, 182, 111, 0.25);
+--blue:#3978b9;--red:#e16d72;--green:#63c5a0;
+--shadow:0 22px 60px rgba(0,0,0,.45);
+}
+body.light{
+--bg:#f3f5f8;--panel:rgba(255, 255, 255, 0.85);--panel2:rgba(233, 238, 244, 0.9);--text:#142236;
+--muted:#5c6b7d;--gold:#98702b;--gold2:#b58b42;--line:rgba(152, 112, 43, 0.3);
+--blue:#2869a8;--red:#c84f57;--green:#258a69;
+--shadow:0 18px 50px rgba(24,42,65,.15);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+margin:0;
+background:var(--bg);
+color:var(--text);
+font-family:'DM Sans',sans-serif;
+overflow-x:hidden;
+transition:background .35s,color .35s;
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit}
+#progress{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg, var(--gold), var(--gold2));z-index:1000;width:0;transition:width .3s}
+.topbar{position:fixed;top:4px;left:0;right:0;height:70px;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 4vw;background:rgba(7, 17, 31, 0.85);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:13px;text-decoration:none}
+.brand-mark{width:43px;height:43px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-family:Georgia,serif;font-weight:bold;font-size:14px;box-shadow:0 0 18px rgba(217,182,111,0.3)}
+.brand-name{font-size:13px;letter-spacing:2px;font-weight:800}
+.brand-sub{font-size:9px;color:var(--muted);letter-spacing:2px;margin-top:3px}
+.top-actions{display:flex;gap:9px;align-items:center}
+.tool-btn{background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:30px;padding:10px 16px;font-size:12px;transition:.25s;backdrop-filter:blur(10px)}
+.tool-btn:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 0 15px rgba(217,182,111,0.2)}
+main{padding-top:73px}
+
+/* ՄԻԱՍՆԱԿԱՆ ՖՈՆԱՅԻՆ ՊԱՏԿԵՐ ԲՈԼՈՐ ԷՋԵՐԻ ՀԱՄԱՐ */
+.slide{
+min-height:calc(100vh - 73px);
+padding:70px 8vw 85px;
+display:none;
+position:relative;
+overflow:hidden;
+animation:slideIn .55s ease;
+background: linear-gradient(135deg, rgba(7, 17, 31, 0.88), rgba(3, 10, 20, 0.94)),
+            url('https://static0.cbrimages.com/wordpress/wp-content/uploads/2018/05/DCEU-Movie-Intro.jpg?w=1200&h=628&fit=crop') center/cover no-repeat fixed !important;
+}
+.slide.active{display:flex;flex-direction:column;justify-content:center}
+@keyframes slideIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.slide::before{content:"";position:absolute;width:450px;height:450px;border-radius:50%;background:radial-gradient(circle,rgba(217,182,111,0.15),transparent 70%);right:-180px;top:-170px;pointer-events:none}
+
+.eyebrow{color:var(--gold);font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;margin-bottom:18px}
+h1,h2,h3,p{margin-top:0}
+h1,h2{font-family:'Playfair Display',serif}
+h1{font-size:clamp(43px,7vw,88px);line-height:1.04;max-width:950px;margin-bottom:25px}
+h2{font-size:clamp(34px,4.6vw,58px);line-height:1.12;margin-bottom:20px}
+h3{font-size:19px;margin-bottom:10px}
+.lead{font-size:clamp(16px,1.7vw,21px);line-height:1.8;color:var(--muted);max-width:850px}
+.gold{color:var(--gold)}
+.muted{color:var(--muted)}
+.small{font-size:12px;color:var(--muted);line-height:1.7}
+.hero .eyebrow,.hero h1,.hero .lead{position:relative;z-index:1}
+.hero h1{max-width:900px}
+.hero-tag{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(217,182,111,0.5);color:#f0d69c;padding:10px 18px;border-radius:30px;font-size:11px;letter-spacing:2px;margin-bottom:30px;background:rgba(7,17,31,0.6);backdrop-filter:blur(8px)}
+.hero-bottom{display:flex;gap:35px;flex-wrap:wrap;margin-top:45px}
+.hero-stat strong{display:block;font-size:27px;color:#f0d69c}
+.hero-stat span{font-size:10px;color:#d3d8df;letter-spacing:1px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:28px}
+.grid.two{grid-template-columns:repeat(2,1fr)}
+.grid.four{grid-template-columns:repeat(4,1fr)}
+
+/* Glassmorphic Cards */
+.card{
+background:var(--panel);
+border:1px solid var(--line);
+border-radius:17px;
+padding:25px;
+box-shadow:var(--shadow);
+transition:all .35s ease;
+position:relative;
+overflow:hidden;
+backdrop-filter:blur(12px);
+}
+.card:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 15px 35px rgba(217,182,111,0.15)}
+.card .number{font-size:32px;font-weight:800;color:var(--gold);margin-bottom:12px}
+.card p{color:var(--muted);font-size:13px;line-height:1.75;margin-bottom:0}
+.card-icon{font-size:28px;margin-bottom:15px}
+.metric{font-size:clamp(27px,3vw,40px);font-weight:800;color:var(--gold);margin:10px 0}
+.metric-label{font-size:11px;color:var(--muted);letter-spacing:1px}
+.callout{border-left:4px solid var(--gold);padding:20px 24px;background:var(--panel);border-radius:0 14px 14px 0;color:var(--muted);line-height:1.8;margin:25px 0;max-width:950px;backdrop-filter:blur(10px)}
+.pill{display:inline-block;padding:6px 12px;border:1px solid var(--line);border-radius:30px;color:var(--muted);font-size:10px;margin:4px;background:rgba(255,255,255,0.05)}
+.chart-box{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px;margin-top:24px;min-height:300px;backdrop-filter:blur(12px)}
+.chart-box canvas{width:100%;height:250px;display:block}
+.chart-title{font-weight:700;margin-bottom:15px}
+.table-wrap{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:15px;margin-top:22px;backdrop-filter:blur(12px)}
+table{border-collapse:collapse;width:100%;min-width:600px}
+th,td{text-align:left;padding:15px 17px;border-bottom:1px solid var(--line);font-size:12px}
+th{color:var(--gold);font-size:10px;letter-spacing:1px;text-transform:uppercase}
+td{color:var(--muted)}
+td:first-child{color:var(--text);font-weight:700}
+tr:last-child td{border-bottom:0}
+.negative{color:var(--red)!important}.positive{color:var(--green)!important}
+.formula{background:var(--panel2);border:1px dashed var(--gold);padding:18px;border-radius:12px;font-family:Georgia,serif;font-size:18px;text-align:center;color:var(--gold);margin:18px 0;backdrop-filter:blur(8px)}
+.controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:18px 0}
+.field{display:flex;flex-direction:column;gap:7px;min-width:150px;flex:1}
+.field label{font-size:11px;color:var(--muted)}
+.field input,.field select{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:9px;padding:12px;outline:none;width:100%}
+.field input:focus{border-color:var(--gold)}
+.result{background:var(--panel2);padding:20px;border-radius:13px;margin-top:16px;border:1px solid var(--line)}
+.result strong{font-size:28px;color:var(--gold);display:block}
+.result span{font-size:11px;color:var(--muted)}
+.simulator{background:var(--panel);border:1px solid var(--gold);border-radius:20px;padding:26px;margin-top:25px;backdrop-filter:blur(15px)}
+.range-row{display:grid;grid-template-columns:1fr 65px;gap:15px;align-items:center;margin:17px 0}
+input[type=range]{accent-color:var(--gold);width:100%}
+.range-row output{color:var(--gold);font-weight:800;text-align:right}
+
+/* Nav Bottom */
+.nav-bottom{position:fixed;bottom:0;left:0;right:0;height:64px;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 4vw;background:rgba(7, 17, 31, 0.9);backdrop-filter:blur(18px);border-top:1px solid var(--line)}
+.nav-group{display:flex;gap:9px;align-items:center}
+.nav-btn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:30px;padding:10px 20px;font-size:12px;transition:.25s}
+.nav-btn:hover{border-color:var(--gold);color:var(--gold)}
+.nav-btn.primary{background:var(--gold);color:#111;border-color:var(--gold);font-weight:800}
+.nav-btn.primary:hover{background:var(--gold2)}
+#pageNum{font-size:11px;color:var(--muted);min-width:65px;text-align:center}
+
+/* Floating Comment Panel */
+#commentToggle{position:fixed;right:22px;bottom:84px;z-index:120;background:var(--gold);color:#111;border:0;border-radius:30px;padding:13px 20px;font-weight:800;box-shadow:0 8px 30px rgba(0,0,0,0.5);transition:.3s}
+#commentToggle:hover{transform:scale(1.05);background:var(--gold2)}
+#commentPanel{position:fixed;right:20px;bottom:145px;width:min(440px,calc(100vw - 40px));max-height:65vh;overflow:auto;background:rgba(10, 22, 38, 0.95);border:1px solid var(--gold);border-radius:18px;padding:24px;z-index:130;box-shadow:var(--shadow);display:none;animation:slideIn .3s;backdrop-filter:blur(20px)}
+#commentPanel.open{display:block}
+#commentPanel h3{color:var(--gold);font-size:18px;margin-bottom:12px}
+#commentText{font-size:13px;line-height:1.85;color:#e2e8f0;white-space:pre-line}
+#commentPanel .close{float:right;background:transparent;border:0;color:var(--text);font-size:22px;cursor:pointer}
+
+#overview{position:fixed;inset:0;background:rgba(7, 17, 31, 0.95);backdrop-filter:blur(20px);z-index:200;display:none;padding:90px 5vw 40px;overflow:auto}
+#overview.open{display:block}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.overview-item{background:var(--panel);border:1px solid var(--line);padding:17px;border-radius:12px;text-align:left;color:var(--text);min-height:90px;transition:.25s}
+.overview-item:hover{border-color:var(--gold);transform:translateY(-3px)}
+.overview-item small{display:block;color:var(--gold);margin-bottom:8px}
+.footer-note{font-size:10px;color:var(--muted);margin-top:28px;line-height:1.7}
+.timeline{border-left:2px solid var(--gold);margin:25px 0 0 8px;padding-left:25px}
+.timeline-item{position:relative;padding-bottom:23px}
+.timeline-item:before{content:"";position:absolute;left:-32px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px var(--bg)}
+.timeline-item p{font-size:13px;color:var(--muted);line-height:1.7}
+
+@media(max-width:800px){
+.slide{padding:50px 6vw 100px}
+.grid,.grid.two,.grid.four{grid-template-columns:1fr}
+.brand-name{font-size:10px}.brand-sub{font-size:8px}
+.tool-btn{padding:9px 10px;font-size:10px}
+.topbar{padding:0 4vw}
+.hero-bottom{gap:18px}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<header class="topbar">
+<a class="brand" href="#" onclick="goTo(0);return false">
+<div class="brand-mark">WB</div>
+<div>
+<div class="brand-name">WARNER BROS. DISCOVERY</div>
+<div class="brand-sub">STRATEGIC FINANCIAL ANALYSIS</div>
+</div>
+</a>
+<div class="top-actions">
+<button class="tool-btn" onclick="toggleTheme()" id="themeBtn">☀ Լույս</button>
+<button class="tool-btn" onclick="toggleOverview()">▦ Բոլոր էջերը</button>
+<button class="tool-btn" onclick="toggleFullscreen()">⛶</button>
+</div>
+</header>
+<main id="presentation">
+
+<!-- 1 -->
+<section class="slide hero active" data-title="Ներածություն">
+<div class="hero-tag">✦ MANAGEMENT & FINANCIAL STRATEGY CASE STUDY</div>
+<div class="eyebrow">ԿԱԶՄԱԿԵՐՊՈՒԹՅԱՆ ՖԻՆԱՆՍԱԿԱՆ ԿԱՅՈՒՆՈՒԹՅՈՒՆ</div>
+<h1>WARNER BROS.<br><span class="gold">DISCOVERY</span></h1>
+<p class="lead">Ֆինանսական ճգնաժամի, պարտքային բեռի և ռազմավարական վերափոխման կառավարչական վերլուծություն։</p>
+<div class="hero-bottom">
+<div class="hero-stat"><strong>100+</strong><span>ՏԱՐՎԱ ՊԱՏՄՈՒԹՅՈՒՆ</span></div>
+<div class="hero-stat"><strong>GLOBAL</strong><span>ՄԻՋԱԶԳԱՅԻՆ ԳՈՐԾՈՒՆԵՈՒԹՅՈՒՆ</span></div>
+<div class="hero-stat"><strong>2022+</strong><span>ՄԻԱՎՈՐՈՒՄԻՑ ՀԵՏՈ ՆՈՐ ՓՈՒԼ</span></div>
+</div>
+<p class="footer-note" style="color:#c7d0dc">Ուսումնական հետազոտական ներկայացում · Կառավարում և ֆինանսական վերլուծություն</p>
+</section>
+
+<!-- 2 -->
+<section class="slide" data-title="Հետազոտության արդիականություն">
+<div class="eyebrow">01 / ՀԵՏԱԶՈՏՈՒԹՅԱՆ ՇՐՋԱՆԱԿ</div>
+<h2>Ինչո՞ւ է այս դեպքը <span class="gold">կարևոր</span></h2>
+<p class="lead">Warner Bros. Discovery-ի օրինակը հնարավորություն է տալիս ուսումնասիրելու, թե ինչպես կարող է խոշոր մեդիա կազմակերպությունը բախվել միաժամանակ մի քանի փոխկապակցված կառավարչական և ֆինանսական մարտահրավերների։</p>
+<div class="grid">
+<div class="card"><div class="card-icon">📉</div><h3>Ֆինանսական ճնշում</h3><p>Պարտքի մեծ ծավալը, շահութաբերության անկայունությունը և դրամական հոսքերի կառավարման անհրաժեշտությունը մեծացնում են ֆինանսական ռիսկերը։</p></div>
+<div class="card"><div class="card-icon">🎬</div><h3>Շուկայի վերափոխում</h3><p>Հեռուստատեսային ավանդական բիզնեսը փոխվում է հոսքային հարթակների, թվային բովանդակության և սպառողների նոր վարքագծի ազդեցությամբ։</p></div>
+<div class="card"><div class="card-icon">⚙️</div><h3>Կառավարման խնդիր</h3><p>Միավորված բիզնեսների ինտեգրումը, ծախսերի վերահսկումը և ռազմավարական առաջնահերթությունների ընտրությունը պահանջում են համակարգված կառավարում։</p></div>
+</div>
+<div class="callout">Հետազոտության առանցքային հարցը՝ ինչպե՞ս կարող է կազմակերպությունը վերականգնել ֆինանսական կայունությունը՝ միաժամանակ պահպանելով մրցունակությունը փոփոխվող մեդիա շուկայում։</div>
+</section>
+
+<!-- 3 -->
+<section class="slide" data-title="Նպատակ և խնդիրներ">
+<div class="eyebrow">02 / ՀԵՏԱԶՈՏԱԿԱՆ ԴԻԶԱՅՆ</div>
+<h2>Հետազոտության նպատակը և <span class="gold">խնդիրները</span></h2>
+<div class="card" style="margin-top:20px">
+<div class="eyebrow">ՀԻՄՆԱԿԱՆ ՆՊԱՏԱԿ</div>
+<h3 style="font-size:25px;line-height:1.5">Գնահատել Warner Bros. Discovery-ի ֆինանսական վիճակը և ուսումնասիրել ճգնաժամային պայմաններում կիրառվող կառավարչական ռազմավարությունների արդյունավետությունը։</h3>
+</div>
+<div class="grid two">
+<div class="card"><div class="number">01</div><h3>Ֆինանսական վիճակի գնահատում</h3><p>Վերլուծել եկամուտների, շահույթի, ակտիվների, պարտավորությունների և դրամական հոսքերի փոփոխությունները։</p></div>
+<div class="card"><div class="number">02</div><h3>Ռիսկերի բացահայտում</h3><p>Գնահատել պարտքային բեռը, իրացվելիությունը և ֆինանսական կայունության վրա ազդող գործոնները։</p></div>
+<div class="card"><div class="number">03</div><h3>Ռազմավարության ուսումնասիրում</h3><p>Դիտարկել ծախսերի օպտիմալացումը, բիզնեսի վերակազմավորումը և թվային ուղղության զարգացումը։</p></div>
+<div class="card"><div class="number">04</div><h3>Առաջարկությունների մշակում</h3><p>Ձևավորել ֆինանսական և կառավարչական միջոցառումներ՝ կայունության բարձրացման համար։</p></div>
+</div>
+</section>
+
+<!-- 4 -->
+<section class="slide" data-title="Մեթոդաբանություն">
+<div class="eyebrow">03 / ՄԵԹՈԴԱԲԱՆՈՒԹՅՈՒՆ</div>
+<h2>Ինչպե՞ս է իրականացվում <span class="gold">վերլուծությունը</span></h2>
+<p class="lead">Ուսումնասիրությունը հիմնվում է ֆինանսական ցուցանիշների համադրության, հարաբերակցությունների հաշվարկման և ռազմավարական գործոնների որակական գնահատման վրա։</p>
+<div class="grid four">
+<div class="card"><div class="number">01</div><h3>Հորիզոնական վերլուծություն</h3><p>Ցույց է տալիս ցուցանիշների փոփոխությունը ժամանակի ընթացքում և բացահայտում աճի կամ նվազման միտումները։</p></div>
+<div class="card"><div class="number">02</div><h3>Գործակիցների վերլուծություն</h3><p>Օգնում է գնահատել շահութաբերությունը, պարտքային բեռը և ֆինանսական կայունությունը։</p></div>
+<div class="card"><div class="number">03</div><h3>DuPont մեթոդ</h3><p>ROE ցուցանիշը բաժանում է բաղադրիչների՝ բացահայտելով դրա փոփոխության պատճառները։</p></div>
+<div class="card"><div class="number">04</div><h3>SWOT վերլուծություն</h3><p>Համակարգում է կազմակերպության ներքին ուժեղ և թույլ կողմերը, արտաքին հնարավորություններն ու սպառնալիքները։</p></div>
+</div>
+<div class="callout">Վերլուծության համար անհրաժեշտ է օգտագործել ընկերության տարեկան հաշվետվություններն ու պաշտոնական ֆինանսական հրապարակումները։</div>
+</section>
+
+<!-- 5 -->
+<section class="slide" data-title="Ընկերության պատմություն">
+<div class="eyebrow">04 / ԸՆԿԵՐՈՒԹՅԱՆ ՊՐՈՖԻԼ</div>
+<h2>Warner Bros. Discovery․ <span class="gold">մեդիա հսկա</span></h2>
+<p class="lead">Warner Bros. Discovery-ն համաշխարհային մեդիա և ժամանցային ընկերություն է, որը միավորում է կինոարտադրությունը, հեռուստատեսային ցանցերը, հոսքային ծառայությունները և բովանդակության տարածման տարբեր հարթակներ։</p>
+<div class="grid two">
+<div class="card"><h3>Warner Bros.</h3><p>Կինոարտադրության և հեռուստատեսային բովանդակության պատմական բրենդ, որի պորտֆելը ներառում է ֆիլմեր, սերիալներ և հայտնի ստեղծագործություններ։</p><span class="pill">Film & Television</span><span class="pill">Studios</span></div>
+<div class="card"><h3>Discovery</h3><p>Փաստավավերագրական, իրական կյանքի և ժամանցային բովանդակության ուղղություն՝ միջազգային հեռուստատեսային ներկայությամբ։</p><span class="pill">Documentary</span><span class="pill">Global Networks</span></div>
+<div class="card"><h3>Streaming</h3><p>Թվային բովանդակության տարածում՝ բաժանորդագրության և գովազդային մոդելների համադրությամբ։</p><span class="pill">Direct-to-Consumer</span></div>
+<div class="card"><h3>Global Distribution</h3><p>Բովանդակության վաճառք, լիցենզավորում և միջազգային տարածում տարբեր շուկաներում։</p><span class="pill">Licensing</span><span class="pill">Distribution</span></div>
+</div>
+</section>
+
+<!-- 6 -->
+<section class="slide" data-title="Միավորման ազդեցությունը">
+<div class="eyebrow">05 / ԿԱՌՈՒՑՎԱԾՔԱՅԻՆ ՓՈՓՈԽՈՒԹՅՈՒՆ</div>
+<h2>Միավորումը և դրա <span class="gold">կառավարչական հետևանքները</span></h2>
+<p class="lead">2022 թվականին WarnerMedia-ի և Discovery-ի միավորումը ձևավորեց նոր կազմակերպություն՝ ստեղծելով բովանդակության, տեխնոլոգիաների և միջազգային շուկաների համախմբման հնարավորություն։</p>
+<div class="grid two">
+<div class="card"><div class="eyebrow">ՀՆԱՐԱՎՈՐՈՒԹՅՈՒՆՆԵՐ</div><h3 class="positive">Սիներգիայի էֆեկտ</h3><p>Բովանդակության գրադարանների համատեղ օգտագործում, գովազդային պորտֆելի ընդլայնում, ծախսերի կրճատման հնարավորություն և բաժանորդների տարբեր խմբերի հասանելիություն։</p></div>
+<div class="card"><div class="eyebrow">ՄԱՐՏԱՀՐԱՎԵՐՆԵՐ</div><h3 class="negative">Ինտեգրման բարդություն</h3><p>Կազմակերպական մշակույթների տարբերություն, կրկնվող գործառույթներ, վերակազմավորման ծախսեր, պարտքային ծանրաբեռնվածություն և կառավարման որոշումների բարդացում։</p></div>
+</div>
+<div class="callout">Միավորումը ինքնին արդյունավետության երաշխիք չէ։ Սիներգիայի իրական արդյունքը կախված է նրանից, թե որքան արագ և արդյունավետ են իրականացվում ինտեգրումն ու ռեսուրսների վերաբաշխումը։</div>
+</section>
+
+<!-- 7 -->
+<section class="slide" data-title="Բիզնես միջավայր">
+<div class="eyebrow">06 / ԱՐՏԱՔԻՆ ՄԻՋԱՎԱՅՐ</div>
+<h2>Մեդիա շուկայի <span class="gold">մրցակցային միջավայրը</span></h2>
+<div class="grid">
+<div class="card"><h3>Հոսքային հարթակներ</h3><p>Մրցակցությունը բաժանորդների համար մեծացնում է բովանդակության արտադրության և ձեռքբերման ծախսերը։</p></div>
+<div class="card"><h3>Գովազդային շուկա</h3><p>Տնտեսական ցիկլերը և թվային գովազդի փոփոխությունները կարող են ազդել հեռուստատեսային եկամուտների վրա։</p></div>
+<div class="card"><h3>Սպառողի վարքագիծ</h3><p>Անհատականացված բովանդակության պահանջարկը և բաժանորդագրությունների նկատմամբ զգայունությունը փոխում են բիզնես մոդելը։</p></div>
+</div>
+<div class="chart-box"><div class="chart-title">Մրցակցային ճնշման պայմանական գնահատում</div><canvas id="competitionChart"></canvas></div>
+</section>
+
+<!-- 8 -->
+<section class="slide" data-title="SWOT վերլուծություն">
+<div class="eyebrow">07 / ՌԱԶՄԱՎԱՐԱԿԱՆ ՎԵՐԼՈՒԾՈՒԹՅՈՒՆ</div>
+<h2>SWOT <span class="gold">վերլուծություն</span></h2>
+<div class="grid two">
+<div class="card"><h3 class="positive">S · Ուժեղ կողմեր</h3><p>Հայտնի միջազգային բրենդներ, մեծ բովանդակային գրադարան, հեղինակային իրավունքների պորտֆել, միջազգային տարածման փորձ։</p></div>
+<div class="card"><h3 class="negative">W · Թույլ կողմեր</h3><p>Պարտքի բարձր մակարդակ, ավանդական հեռուստատեսության եկամուտների ճնշում, ինտեգրման ծախսեր և բարդ կազմակերպական կառուցվածք։</p></div>
+<div class="card"><h3 class="positive">O · Հնարավորություններ</h3><p>Թվային ծառայությունների զարգացում, բովանդակության նոր շուկաներ, գովազդային մոդելների զարգացում և լիցենզավորման եկամուտներ։</p></div>
+<div class="card"><h3 class="negative">T · Սպառնալիքներ</h3><p>Մրցակիցների աճ, բովանդակության արտադրության բարձր ծախսեր, գովազդային շուկայի անկայունություն և սպառողների նախասիրությունների փոփոխություն։</p></div>
+</div>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-title="Ֆինանսական ցուցանիշներ">
+<div class="eyebrow">08 / ՖԻՆԱՆՍԱԿԱՆ ՊԱՏԿԵՐ</div>
+<h2>Ֆինանսական վիճակի <span class="gold">ընդհանուր պատկերը</span></h2>
+<p class="lead">Ֆինանսական վերլուծության հիմնական նպատակն է հասկանալ՝ արդյոք կազմակերպությունը կարողանում է իր գործառնական գործունեությունից ստացված միջոցներով ծածկել ծախսերը, սպասարկել պարտքը և ֆինանսավորել զարգացումը։</p>
+<div class="grid four">
+<div class="card"><div class="metric">33.8</div><div class="metric-label">ԵԿԱՄՈՒՏ, $ մլրդ</div></div>
+<div class="card"><div class="metric">9.2</div><div class="metric-label">EBITDA, $ մլրդ</div></div>
+<div class="card"><div class="metric">48.6</div><div class="metric-label">ՊԱՐՏՔ, $ մլրդ</div></div>
+<div class="card"><div class="metric">3.3</div><div class="metric-label">FCF, $ մլրդ</div></div>
+</div>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-title="Տվյալների աղյուսակ">
+<div class="eyebrow">09 / ՏՎՅԱԼՆԵՐԻ ՀԱՄԱԿԱՐԳՈՒՄ</div>
+<h2>Ֆինանսական տվյալների <span class="gold">համեմատություն</span></h2>
+<p class="lead">Համադրելով մի քանի տարիների ցուցանիշները՝ հնարավոր է բացահայտել կազմակերպության ֆինանսական վիճակի փոփոխության ուղղությունը։</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Ցուցանիշ</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th></tr></thead>
+<tbody>
+<tr><td>Եկամուտ ($ մլրդ)</td><td>33.817</td><td>41.321</td><td>39.581</td><td>40.2</td><td>41.5</td></tr>
+<tr><td>Adjusted EBITDA ($ մլրդ)</td><td>9.198</td><td>10.182</td><td>9.22</td><td>9.45</td><td>9.8</td></tr>
+<tr><td>EBITDA margin (%)</td><td>27.2</td><td>24.6</td><td>23.3</td><td>23.5</td><td>23.6</td></tr>
+<tr><td>Զուտ շահույթ ($ մլրդ)</td><td class="negative">−7.371</td><td class="negative">−3.126</td><td class="negative">−11.49</td><td class="negative">−1.2</td><td class="positive">+3.45</td></tr>
+<tr><td>Ազատ դրամական հոսք ($ մլրդ)</td><td>3.3</td><td>6.1</td><td>5.1</td><td>5.7</td><td>6.05</td></tr>
+<tr><td>Ընդհանուր պարտք ($ մլրդ)</td><td>48.6</td><td>43.5</td><td>41.5</td><td>37.4</td><td>33.3</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-title="Եկամուտների դինամիկա">
+<div class="eyebrow">10 / ԵԿԱՄՈՒՏՆԵՐ</div>
+<h2>Եկամուտների <span class="gold">դինամիկա</span></h2>
+<p class="lead">Եկամուտների փոփոխությունը ցույց է տալիս կազմակերպության վաճառքի ծավալների և շուկայական գործունեության ընդհանուր միտումները։ Սակայն եկամտի աճը դեռ չի նշանակում շահութաբերության աճ։</p>
+<div class="chart-box"><div class="chart-title">Եկամուտներ, $ մլրդ</div><canvas id="revenueChart"></canvas></div>
+</section>
+
+<!-- 12 -->
+<section class="slide" data-title="EBITDA և շահութաբերություն">
+<div class="eyebrow">11 / ԳՈՐԾԱՌՆԱԿԱՆ ԱՐԴՅՈՒՆԱՎԵՏՈՒԹՅՈՒՆ</div>
+<h2>EBITDA և <span class="gold">շահութաբերության մարժա</span></h2>
+<p class="lead">EBITDA-ն օգնում է գնահատել գործառնական գործունեության արդյունքը՝ մինչև տոկոսների, հարկերի, մաշվածության և ամորտիզացիայի ազդեցությունը։</p>
+<div class="formula">EBITDA Margin = EBITDA / Revenue × 100%</div>
+<div class="chart-box"><div class="chart-title">EBITDA և EBITDA margin</div><canvas id="ebitdaChart"></canvas></div>
+</section>
+
+<!-- 13 -->
+<section class="slide" data-title="Զուտ շահույթ">
+<div class="eyebrow">12 / ԶՈՒՏ ՖԻՆԱՆՍԱԿԱՆ ԱՐԴՅՈՒՆՔ</div>
+<h2>Զուտ շահույթի <span class="gold">փոփոխություն</span></h2>
+<p class="lead">Զուտ շահույթը ցույց է տալիս, թե բոլոր ճանաչված ծախսերից, տոկոսներից և հարկերից հետո ինչ ֆինանսական արդյունք է ստացել կազմակերպությունը։</p>
+<div class="chart-box"><div class="chart-title">Զուտ շահույթ, $ մլրդ</div><canvas id="profitChart"></canvas></div>
+</section>
+
+<!-- 14 -->
+<section class="slide" data-title="Շահույթ և դրամական հոսքեր">
+<div class="eyebrow">13 / ԴՐԱՄԱԿԱՆ ՀՈՍՔԵՐ</div>
+<h2>Շահույթը և դրամական հոսքը <span class="gold">նույնը չեն</span></h2>
+<div class="grid two">
+<div class="card"><h3>Հաշվապահական շահույթ</h3><p>Հաշվարկվում է հաշվեգրման սկզբունքով։ Կարող է ներառել այնպիսի եկամուտներ և ծախսեր, որոնք տվյալ ժամանակահատվածում դեռ դրամական շարժ չեն առաջացրել։</p></div>
+<div class="card"><h3>Դրամական հոսք</h3><p>Արտացոլում է իրական դրամական մուտքերն ու ելքերը։ Կարևոր է պարտքի սպասարկման, ներդրումների և ընթացիկ վճարումների համար։</p></div>
+</div>
+<div class="chart-box"><div class="chart-title">Զուտ շահույթ և ազատ դրամական հոսք, $ մլրդ</div><canvas id="cashChart"></canvas></div>
+</section>
+
+<!-- 15 -->
+<section class="slide" data-title="ROA և ROE">
+<div class="eyebrow">14 / ՇԱՀՈՒԹԱԲԵՐՈՒԹՅԱՆ ԳՈՐԾԱԿԻՑՆԵՐ</div>
+<h2>ROA և ROE․ ռեսուրսների <span class="gold">արդյունավետություն</span></h2>
+<div class="grid two">
+<div class="card"><div class="eyebrow">RETURN ON ASSETS</div><div class="metric">ROA</div><div class="formula">Զուտ շահույթ / Միջին ակտիվներ</div><p>Ցույց է տալիս, թե կազմակերպությունը որքան արդյունավետ է օգտագործում իր ակտիվները շահույթ ստեղծելու համար։</p></div>
+<div class="card"><div class="eyebrow">RETURN ON EQUITY</div><div class="metric">ROE</div><div class="formula">Զուտ շահույթ / Միջին սեփական կապիտալ</div><p>Գնահատում է բաժնետերերի ներդրած կապիտալի շահութաբերությունը։</p></div>
+</div>
+</section>
+
+<!-- 16 -->
+<section class="slide" data-title="DuPont վերլուծություն">
+<div class="eyebrow">15 / DUPONT ՄՈԴԵԼ</div>
+<h2>ROE-ի կառուցվածքի <span class="gold">վերլուծություն</span></h2>
+<p class="lead">DuPont մեթոդը թույլ է տալիս հասկանալ, թե սեփական կապիտալի շահութաբերության վրա ինչ ազդեցություն ունեն շահույթի մարժան, ակտիվների շրջանառությունը և ֆինանսական լծակը։</p>
+<div class="formula">ROE = Net Profit Margin × Asset Turnover × Equity Multiplier</div>
+<div class="grid three">
+<div class="card"><h3>Շահույթի մարժա</h3><p>Որքան շահույթ է ստեղծվում յուրաքանչյուր եկամտային միավորից։</p></div>
+<div class="card"><h3>Ակտիվների շրջանառություն</h3><p>Որքան եկամուտ է ստեղծվում ակտիվների յուրաքանչյուր միավորի հաշվին։</p></div>
+<div class="card"><h3>Ֆինանսական լծակ</h3><p>Ինչ չափով է ակտիվների ֆինանսավորումն իրականացվում սեփական և փոխառու միջոցներով։</p></div>
+</div>
+</section>
+
+<!-- 17 -->
+<section class="slide" data-title="Պարտքային բեռ">
+<div class="eyebrow">16 / ՖԻՆԱՆՍԱԿԱՆ ՌԻՍԿ</div>
+<h2>Պարտքային բեռի <span class="gold">կառավարում</span></h2>
+<p class="lead">Խոշոր պարտքային բեռը կարող է սահմանափակել ներդրումային հնարավորությունները, մեծացնել տոկոսային ծախսերը և նվազեցնել կազմակերպության ճկունությունը։</p>
+<div class="chart-box"><div class="chart-title">Ընդհանուր պարտք, $ մլրդ</div><canvas id="debtChart"></canvas></div>
+<div class="formula">Net Debt / EBITDA = (Պարտք − Դրամական միջոցներ) / EBITDA</div>
+</section>
+
+<!-- 18 -->
+<section class="slide" data-title="Ազատ դրամական հոսք">
+<div class="eyebrow">17 / CASH FLOW MANAGEMENT</div>
+<h2>Ազատ դրամական հոսքը՝ <span class="gold">կայունության հիմք</span></h2>
+<p class="lead">Ազատ դրամական հոսքը ցույց է տալիս, թե գործառնական գործունեության և կապիտալ ծախսերի իրականացումից հետո որքան դրամական միջոց է մնում կազմակերպության տրամադրության տակ։</p>
+<div class="formula">FCF = Operating Cash Flow − Capital Expenditures</div>
+<div class="chart-box"><div class="chart-title">Ազատ դրամական հոսք, $ մլրդ</div><canvas id="fcfChart"></canvas></div>
+</section>
+
+<!-- 19 -->
+<section class="slide" data-title="Altman Z Score">
+<div class="eyebrow">18 / ՍՆԱՆԿԱՑՄԱՆ ՌԻՍԿԻ ԳՆԱՀԱՏՈՒՄ</div>
+<h2>Altman Z′-Score <span class="gold">մոդել</span></h2>
+<p class="lead">Altman Z-Score-ը ֆինանսական գործակիցների վրա հիմնված մոդել է, որն օգտագործվում է կազմակերպության ֆինանսական դժվարությունների և սնանկացման ռիսկի գնահատման համար։</p>
+<div class="formula">Z′ = 0.717X₁ + 0.847X₂ + 3.107X₃ + 0.420X₄ + 0.998X₅</div>
+<div class="grid two">
+<div class="card"><h3>X₁</h3><p>Շրջանառու կապիտալ / Ընդհանուր ակտիվներ</p></div>
+<div class="card"><h3>X₂</h3><p>Չբաշխված շահույթ / Ընդհանուր ակտիվներ</p></div>
+<div class="card"><h3>X₃</h3><p>EBIT / Ընդհանուր ակտիվներ</p></div>
+<div class="card"><h3>X₄ և X₅</h3><p>Սեփական կապիտալ / Պարտավորություններ և վաճառք / Ակտիվներ</p></div>
+</div>
+</section>
+
+<!-- 20 -->
+<section class="slide" data-title="Ֆինանսական ռիսկի հաշվիչ">
+<div class="eyebrow">19 / ԻՆՏԵՐԱԿՏԻՎ ԳՈՐԾԻՔ</div>
+<h2>Ֆինանսական ռիսկի <span class="gold">հաշվիչ</span></h2>
+<p class="lead">Փոխիր ցուցանիշները և տես, թե ինչպես է փոխվում պարտքի և EBITDA-ի հարաբերակցությունը։</p>
+<div class="simulator">
+<div class="controls">
+<div class="field"><label>Ընդհանուր պարտք ($ մլրդ)</label><input id="debtInput" type="number" value="33.3" min="0" step=".1"></div>
+<div class="field"><label>Դրամական միջոցներ ($ մլրդ)</label><input id="cashInput" type="number" value="5" min="0" step=".1"></div>
+<div class="field"><label>EBITDA ($ մլրդ)</label><input id="ebitdaInput" type="number" value="9.8" min=".1" step=".1"></div>
+</div>
+<div class="grid three">
+<div class="result"><strong id="netDebtResult">28.3</strong><span>Զուտ պարտք, $ մլրդ</span></div>
+<div class="result"><strong id="leverageResult">2.89x</strong><span>Net Debt / EBITDA</span></div>
+<div class="result"><strong id="riskResult">Միջին</strong><span>Պայմանական ռիսկի մակարդակ</span></div>
+</div>
+<p class="small" id="riskExplain">Մոդելային գնահատում․ իրական վարկային ռիսկը կախված է նաև տոկոսադրույքներից և պարտքի ժամկետայնությունից։</p>
+</div>
+</section>
+
+<!-- 21 -->
+<section class="slide" data-title="Ճգնաժամի փուլեր">
+<div class="eyebrow">20 / ՃԳՆԱԺԱՄԱՅԻՆ ԿԱՌԱՎԱՐՈՒՄ</div>
+<h2>Ֆինանսական ճգնաժամի <span class="gold">կառավարման փուլերը</span></h2>
+<div class="timeline">
+<div class="timeline-item"><h3>1. Խնդրի ախտորոշում</h3><p>Բացահայտվում են ֆինանսական դժվարությունների պատճառները՝ պարտքի կառուցվածք, ծախսեր և դրամական հոսքեր։</p></div>
+<div class="timeline-item"><h3>2. Անմիջական կայունացում</h3><p>Սահմանվում են դրամական միջոցների պահպանման և կարճաժամկետ պարտավորությունների սպասարկման առաջնահերթությունները։</p></div>
+<div class="timeline-item"><h3>3. Կառուցվածքային վերափոխում</h3><p>Վերանայվում են բիզնես ուղղությունները, ակտիվների պորտֆելը և գործառնական գործընթացները։</p></div>
+<div class="timeline-item"><h3>4. Երկարաժամկետ զարգացում</h3><p>Կազմակերպությունը կենտրոնանում է մրցունակության և կայուն ֆինանսական մոդելի ձևավորման վրա։</p></div>
+</div>
+</section>
+
+<!-- 22 -->
+<section class="slide" data-title="Ռազմավարական լուծումներ">
+<div class="eyebrow">21 / ՌԱԶՄԱՎԱՐԱԿԱՆ ՈՒՂՂՈՒԹՅՈՒՆՆԵՐ</div>
+<h2>Հնարավոր ռազմավարական <span class="gold">լուծումներ</span></h2>
+<div class="grid two">
+<div class="card"><div class="card-icon">💰</div><h3>Պարտքի օպտիմալացում</h3><p>Պարտքի ժամկետայնության վերանայում և ազատ դրամական հոսքերի ուղղորդում պարտքի մարմանը։</p></div>
+<div class="card"><div class="card-icon">✂️</div><h3>Ծախսերի կառավարում</h3><p>Կրկնվող գործառույթների կրճատում, գնումների կենտրոնացում և բյուջետային վերահսկողություն։</p></div>
+<div class="card"><div class="card-icon">🎥</div><h3>Բովանդակության արդյունավետություն</h3><p>Ներդրումների առաջնահերթությունների սահմանում՝ ըստ լսարանի և եկամտաբերության։</p></div>
+<div class="card"><div class="card-icon">📲</div><h3>Թվային զարգացում</h3><p>Բաժանորդների պահպանում, անհատականացված առաջարկներ և գովազդային եկամուտների զարգացում։</p></div>
+</div>
+</section>
+
+<!-- 23 -->
+<section class="slide" data-title="13 շաբաթվա դրամական պլան">
+<div class="eyebrow">22 / ԿԱՐՃԱԺԱՄԿԵՏ ԿԱՌԱՎԱՐՈՒՄ</div>
+<h2>13-շաբաթյա դրամական հոսքերի <span class="gold">պլանավորում</span></h2>
+<p class="lead">13-շաբաթյա կանխատեսումը կարճաժամկետ իրացվելիության կառավարման գործիք է։</p>
+<div class="grid three">
+<div class="card"><div class="number">01</div><h3>Մուտքերի կանխատեսում</h3><p>Բաժանորդագրություններ, գովազդ և բովանդակության վաճառք։</p></div>
+<div class="card"><div class="number">02</div><h3>Ելքերի պլանավորում</h3><p>Աշխատավարձեր, մատակարարներ, արտադրություն և տոկոսներ։</p></div>
+<div class="card"><div class="number">03</div><h3>Շեղումների վերահսկում</h3><p>Փաստացի և պլանային ցուցանիշների համեմատություն։</p></div>
+</div>
+</section>
+
+<!-- 24 -->
+<section class="slide" data-title="Դրամական հոսքերի սիմուլյատոր">
+<div class="eyebrow">23 / ԻՆՏԵՐԱԿՏԻՎ ՍԻՄՈՒԼՅԱՏՈՐ</div>
+<h2>Դրամական հոսքերի <span class="gold">սիմուլյատոր</span></h2>
+<p class="lead">Փոփոխիր եկամուտները և ծախսերը՝ տեսնելու համար, թե ինչքան ազատ դրամական հոսք կարող է ձևավորվել։</p>
+<div class="simulator">
+<div class="range-row"><label>Գործառնական դրամական մուտքեր ($ մլրդ)</label><input id="inflow" type="range" min="2" max="15" step=".1" value="8"><output id="inflowVal">8.0</output></div>
+<div class="range-row"><label>Գործառնական վճարումներ ($ մլրդ)</label><input id="outflow" type="range" min="1" max="12" step=".1" value="4"><output id="outflowVal">4.0</output></div>
+<div class="range-row"><label>Կապիտալ ծախսեր ($ մլրդ)</label><input id="capex" type="range" min=".2" max="5" step=".1" value="2"><output id="capexVal">2.0</output></div>
+<div class="grid two">
+<div class="result"><strong id="operatingResult">4.0</strong><span>Գործառնական զուտ հոսք</span></div>
+<div class="result"><strong id="fcfResult">2.0</strong><span>Մոդելավորված FCF, $ մլրդ</span></div>
+</div>
+<p class="small" id="cashMessage">Դրական ազատ դրամական հոսք․ կազմակերպությունն ունի լրացուցիչ ֆինանսական ռեսուրսներ։</p>
+</div>
+</section>
+
+<!-- 25 -->
+<section class="slide" data-title="Պարտքի մարման սցենար">
+<div class="eyebrow">24 / ՊԱՐՏՔԻ ԿԱՌԱՎԱՐՄԱՆ ՍՑԵՆԱՐ</div>
+<h2>Որքա՞ն ժամանակում կարելի է <span class="gold">նվազեցնել պարտքը</span></h2>
+<p class="lead">Սիմուլյատորը ցույց է տալիս, թե տարեկան որքան ազատ դրամական հոսք ուղղելու դեպքում ինչ տևողությամբ կարելի է մարել զուտ պարտքը։</p>
+<div class="simulator">
+<div class="controls">
+<div class="field"><label>Զուտ պարտք ($ մլրդ)</label><input id="repayDebt" type="number" value="28.3" min="0"></div>
+<div class="field"><label>Տարեկան պարտքի մարմանը հատկացվող գումար ($ մլրդ)</label><input id="repayCash" type="number" value="3" min=".1" step=".1"></div>
+</div>
+<div class="result"><strong id="repayYears">9.4 տարի</strong><span>Պարզեցված մարման ժամանակահատված</span></div>
+</div>
+</section>
+
+<!-- 26 -->
+<section class="slide" data-title="Թվային և գործառնական արդյունավետություն">
+<div class="eyebrow">25 / ԱՐԴՅՈՒՆԱՎԵՏՈՒԹՅԱՆ ԲԱՐՁՐԱՑՈՒՄ</div>
+<h2>Թվային և գործառնական <span class="gold">արդյունավետություն</span></h2>
+<p class="lead">Տվյալների վրա հիմնված կառավարումը նպաստում է ծախսերի վերահսկմանը և ներդրումների արդյունավետ բաշխմանը։</p>
+<div class="grid">
+<div class="card"><h3>Տվյալահեն որոշումներ</h3><p>Դիտումների, բաժանորդների վարքագծի և բովանդակության պահանջարկի տվյալների օգտագործում։</p></div>
+<div class="card"><h3>Ավտոմատացում</h3><p>Կրկնվող գործընթացների թվայնացում և վարչական ծախսերի նվազեցում։</p></div>
+<div class="card"><h3>Արդյունավետ բյուջետավորում</h3><p>Ներդրումների գնահատում՝ ըստ ակնկալվող եկամտաբերության։</p></div>
+</div>
+</section>
+
+<!-- 27 -->
+<section class="slide" data-title="KPI համակարգ">
+<div class="eyebrow">26 / ԱՐԴՅՈՒՆՔՆԵՐԻ ՎԵՐԱՀՍԿՈՂՈՒԹՅՈՒՆ</div>
+<h2>Կառավարման հիմնական <span class="gold">KPI ցուցանիշները</span></h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Ուղղություն</th><th>KPI</th><th>Ինչ է գնահատում</th><th>Կառավարչական նշանակություն</th></tr></thead>
+<tbody>
+<tr><td>Շահութաբերություն</td><td>EBITDA Margin</td><td>Գործառնական շահութաբերություն</td><td>Ծախսերի վերահսկում</td></tr>
+<tr><td>Պարտք</td><td>Net Debt / EBITDA</td><td>Պարտքային ծանրաբեռնվածություն</td><td>Ֆինանսական կայունություն</td></tr>
+<tr><td>Դրամական հոսք</td><td>FCF</td><td>Ազատ դրամական միջոցներ</td><td>Պարտքի մարում և ներդրումներ</td></tr>
+<tr><td>Ակտիվներ</td><td>ROA</td><td>Ակտիվների արդյունավետություն</td><td>Ռեսուրսների օգտագործում</td></tr>
+<tr><td>Հաճախորդներ</td><td>Churn Rate</td><td>Բաժանորդների հեռացման մակարդակ</td><td>Հաճախորդների պահպանում</td></tr>
+<tr><td>Գործառնական</td><td>Cost per Content</td><td>Բովանդակության արտադրության արժեք</td><td>Ներդրումների արդյունավետություն</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<!-- 28 -->
+<section class="slide" data-title="Եզրակացություններ">
+<div class="eyebrow">27 / ՀԵՏԱԶՈՏՈՒԹՅԱՆ ԱՐԴՅՈՒՆՔ</div>
+<h2>Հիմնական <span class="gold">եզրակացությունները</span></h2>
+<div class="grid two">
+<div class="card"><div class="number">01</div><h3>Ֆինանսական կայունություն</h3><p>Պարտքի կառավարումը և դրամական հոսքերի վերահսկումը երկարաժամկետ ռազմավարության առանցքն են։</p></div>
+<div class="card"><div class="number">02</div><h3>Գործառնական արդյունավետություն</h3><p>Ծախսերի օպտիմալացումը պետք է զուգակցվի եկամուտ ստեղծող ուղղությունների պահպանման հետ։</p></div>
+<div class="card"><div class="number">03</div><h3>Թվային վերափոխում</h3><p>Տվյալների օգտագործումը բարձրացնում է կառավարման որոշումների որակը։</p></div>
+<div class="card"><div class="number">04</div><h3>Համակարգված կառավարում</h3><p>Կարճաժամկետ ֆինանսական միջոցառումները պետք է համադրվեն երկարաժամկետ ռազմավարության հետ։</p></div>
+</div>
+</section>
+
+<!-- 29 -->
+<section class="slide" data-title="Քննարկում">
+<div class="eyebrow">28 / ՔՆՆԱՐԿՈՒՄ</div>
+<h2>Քննարկման հարցեր</h2>
+<p class="lead">Գնահատենք ռազմավարական ընտրությունները և առաջնահերթությունները։</p>
+<div class="grid two">
+<div class="card"><h3>Հարց 1</h3><p>Արդյո՞ք ծախսերի կրճատումը կարող է երկարաժամկետ վնասել բովանդակության որակին և մրցունակությանը։</p></div>
+<div class="card"><h3>Հարց 2</h3><p>Ո՞րն է ավելի կարևոր՝ պարտքի արագ մարո՞ւմը, թե՞ թվային բիզնեսի զարգացման համար ներդրումները։</p></div>
+<div class="card"><h3>Հարց 3</h3><p>Ինչպե՞ս պետք է գնահատել միավորման արդյունավետությունը՝ ֆինանսական արդյունքներով, թե՞ նաև ռազմավարական սիներգիայով։</p></div>
+<div class="card"><h3>Հարց 4</h3><p>Ո՞ր KPI-ները պետք է առաջնահերթ լինեն ընկերության ղեկավարության համար։</p></div>
+</div>
+</section>
+
+<!-- 30 -->
+<section class="slide hero" data-title="Ավարտ">
+<div class="eyebrow">WARNER BROS. DISCOVERY · STRATEGIC ANALYSIS</div>
+<h1>ՇՆՈՐՀԱԿԱԼՈՒԹՅՈՒՆ<br><span class="gold">ՈՒՇԱԴՐՈՒԹՅԱՆ ՀԱՄԱՐ</span></h1>
+<p class="lead">Ֆինանսական կայունությունը ձևավորվում է ոչ միայն թվերով, այլև ճիշտ կառավարչական որոշումներով։</p>
+<div class="hero-bottom">
+<div class="hero-stat"><strong>ANALYZE</strong><span>ՎԵՐԼՈՒԾԵԼ</span></div>
+<div class="hero-stat"><strong>STRATEGIZE</strong><span>ՌԱԶՄԱՎԱՐԵԼ</span></div>
+<div class="hero-stat"><strong>TRANSFORM</strong><span>ՎԵՐԱՓՈԽԵԼ</span></div>
+</div>
+</section>
+
+</main>
+
+<button id="commentToggle" onclick="toggleComment()">▤ Մեկնաբանություն</button>
+<aside id="commentPanel">
+<button class="close" onclick="toggleComment()">×</button>
+<div class="eyebrow">ԲԱՆԱՎՈՐ ԶԵԿՈՒՅՑ (SPEECH SCRIPT)</div>
+<h3 id="commentTitle">Էջի մեկնաբանություն</h3>
+<div id="commentText"></div>
+</aside>
+
+<div id="overview">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:25px">
+<div><div class="eyebrow">NAVIGATION</div><h2>Բոլոր էջերը</h2></div>
+<button class="tool-btn" onclick="toggleOverview()">✕ Փակել</button>
+</div>
+<div class="overview-grid" id="overviewGrid"></div>
+</div>
+
+<footer class="nav-bottom">
+<div class="nav-group">
+<button class="nav-btn" onclick="previousSlide()">← Նախորդ</button>
+<button class="nav-btn primary" onclick="nextSlide()">Հաջորդ →</button>
+</div>
+<div id="pageNum">01 / 30</div>
+<div class="nav-group">
+<span class="small" id="pageTitle">Ներածություն</span>
+</div>
+</footer>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let current=0;
+
+/* ԱՄԵՆ ԷՋԻ (1-30) ՀԱՄԱՐ ՄԱՆՐԱՄԱՍՆ, ՊԱՐԶ ԵՎ ՊՐՈՖԵՍԻՈՆԱԼ ԶԵԿՈՒՅՑԻ ԽՈՍՔԸ */
+const comments=[
+/* 1 */ `Հարգելի գործընկերներ, բարի գալուստ «Warner Bros. Discovery» ընկերության ռազմավարական և ֆինանսական վերլուծությանը նվիրված զեկույցին։ Այսօր մենք միասին կուսումնասիրենք մեդիա հսկայի ֆինանսական կայունության, պարտքային բեռի կառավարման և ճգնաժամային իրավիճակից դուրս գալու ռազմավարական ուղիները։ 100-ամյա պատմություն ունեցող այս կազմակերպությունը 2022 թվականի մեծ միավորումից հետո հայտնվել է նոր ֆինանսական իրականությունում, որտեղ անհրաժեշտ է հավասարակշռել մեծ պարտքերը, ծախսերի օպտիմալացումը և թվային ապագայի ներդրումները։`,
+/* 2 */ `Ինչո՞ւ է այս դեպքն այսքան կարևոր ժամանակակից կառավարման մեջ։ Warner Bros. Discovery-ի օրինակը ցույց է տալիս, թե ինչպես կարող է աշխարհի ամենախոշոր մեդիա ընկերություններից մեկը միաժամանակ բախվել երեք հզոր մարտահրավերների․ առաջին՝ պարտքային մեծ բեռ և ֆինանսական ճնշում, երկրորդ՝ ավանդական հեռուստատեսությունից դեպի սթրիմինգ անցման շուկայական տեկտոնիկ տեղաշարժեր, և երրորդ՝ երկու տարբեր կազմակերպչական մշակույթների ու բիզնեսների ինտեգրում։ Մեր հետազոտության առանցքային հարցն է՝ ինչպես վերականգնել ֆինանսական կայունությունը՝ չկորցնելով մրցունակությունը։`,
+/* 3 */ `Այս հետազոտության հիմնական նպատակն է խորությամբ գնահատել Warner Bros. Discovery-ի ֆինանսական առողջությունը և վերլուծել ճգնաժամային պայմաններում կիրառվող կառավարչական ռազմավարությունների արդյունավետությունը։ Դրան հասնելու համար մենք լուծել ենք 4 հիմնական խնդիր․ նախ՝ վերլուծել ենք եկամուտների, շահույթի և դրամական հոսքերի դինամիկան, երկրորդ՝ բացահայտել ենք պարտքի և իրացվելիության ռիսկերը, երրորդ՝ ուսումնասիրել ենք ծախսերի կրճատման ու թվայնացման ռազմավարությունները, և չորրորդ՝ մշակել ենք գործնական առաջարկություններ։`,
+/* 4 */ `Մեր վերլուծությունը հենվում է 4 հիմնական մեթոդական ուղղությունների վրա։ Հորիզոնական վերլուծության միջոցով ուսումնասիրել ենք ֆինանսական ցուցանիշների փոփոխությունը տարիների ընթացքում։ Ֆինանսական գործակիցների վերլուծությամբ գնահատել ենք շահութաբերությունն ու պարտքային բեռը։ DuPont մոդելով բացահայտել ենք սեփական կապիտալի շահութաբերության (ROE) խորքային գործոնները, իսկ SWOT վերլուծությամբ համադրել ենք ընկերության ներքին ուժեղ ու թույլ կողմերը արտաքին հնարավորությունների և սպառնալիքների հետ։`,
+/* 5 */ `Անդրադառնանք ընկերության պորտֆելին։ Warner Bros. Discovery-ն համաշխարհային մեդիա կոնգլոմերատ է, որն իր մեջ ներառում է Warner Bros. լեգենդար կինոստուդիան, Discovery-ի փաստավավերագրական ու իրական կյանքի ալիքների համաշխարհային ցանցը, HBO և Max սթրիմինգային հարթակները, ինչպես նաև միջազգային լիցենզավորման ու բաշխման հսկայական համակարգը։ Այս բազմազանությունը տալիս է բովանդակային մեծ առավելություն, բայց պահանջում է բարդ կառավարում։`,
+/* 6 */ `2022 թվականի միավորումը ձևավորեց նոր մեդիա հսկա։ Կառավարչական տեսանկյունից սա ստեղծեց ինչպես հսկայական հնարավորություններ, այնպես էլ լուրջ մարտահրավերներ։ Սիներգիայի շնորհիվ ընկերությունը ստացավ բովանդակության գրադարանների համատեղման, կրկնվող ծախսերի կրճատման և գովազդային հզոր պորտֆելի հնարավորություն։ Սակայն միևնույն ժամանակ առաջացան ինտեգրման բարդություններ, կազմակերպչական մշակույթների բախում և ամենակարևորը՝ հսկայական պարտքային բեռ։`,
+/* 7 */ `Արտաքին միջավայրում ընկերությունը գործում է խիստ մրցակցային դաշտում։ Սթրիմինգային հարթակներում պայքարը բարձրացրել է բովանդակության արտադրության արժեքը։ Ավանդական հեռուստատեսությունում գովազդային եկամուտները գտնվում են ճնշման տակ, իսկ սպառողները դարձել են ավելի պահանջկոտ ու զգայուն գների նկատմամբ։ Այս գրաֆիկում պատկերված է մրցակցային ճնշման մակարդակը տարբեր սեգմենտներում։`,
+/* 8 */ `Ռազմավարական SWOT վերլուծությունը հստակ ցույց է տալիս ընկերության պատկերը։ Ուժեղ կողմերն են համաշխարհային բրենդները և հսկայական ինտելեկտուալ սեփականությունը։ Թույլ կողմերն են բարձր պարտքը և ավանդական TV եկամուտների նվազումը։ Հնարավորությունները կապված են Max հարթակի միջազգային ընդլայնման և լիցենզավորման հետ, իսկ սպառողների նախասիրությունների փոփոխությունն ու բովանդակության թանկացումը հիմնական սպառնալիքներն են։`,
+/* 9 */ `Անցնենք ֆինանսական պատկերին։ Ընկերության հիմնական ցուցանիշները արտացոլում են բիզնեսի իրական մասշտաբը․ շուրջ 33-41 միլիարդ դոլար տարեկան եկամուտ, ավելի քան 9 միլիարդ դոլար EBITDA, մոտ 48 միլիարդ դոլարից սկսվող ընդհանուր պարտք և 3-6 միլիարդ դոլար ազատ դրամական հոսք (FCF)։ Սրանք թվեր են, որոնք պահանջում են ֆինանսական բարձր ճշգրտություն և կարգապահություն։`,
+/* 10 */ `Այս աղյուսակում ամփոփված են 2020-2024 թվականների ֆինանսական ցուցանիշները։ Նկատենք, որ չնայած հաշվապահական զուտ վնասներին (որոնք հիմնականում պայմանավորված էին ոչ դրամական արժեզրկումներով ու վերակազմավորման ծախսերով), ազատ դրամական հոսքը (FCF) մնացել է կայուն դրական՝ հասնելով 6 միլիարդ դոլարի, իսկ ընդհանուր պարտքը 48.6 միլիարդից նվազել է մինչև 33.3 միլիարդ դոլար։`,
+/* 11 */ `Եկամուտների դինամիկայի գրաֆիկը ցույց է տալիս միավորումից հետո եկամտային բազայի ձևավորումը։ 2021-2022 թթ․ միավորման ազդեցությամբ եկամուտները թռիչքաձև աճեցին, որից հետո կայունացան 39-41.5 միլիարդ դոլարի միջակայքում։ Կառավարչական տեսանկյունից կարևոր է ոչ միայն եկամտի ծավալը, այլև դրա որակը՝ ավանդական TV գովազդից դեպի սթրիմինգային բաժանորդագրություններ անցումը։`,
+/* 12 */ `Գործառնական արդյունավետության հիմնական ցուցանիշը EBITDA-ն է և դրա մարժան։ Ինչպես տեսնում եք գրաֆիկում, EBITDA margin-ը պահպանվում է 23-27% միջակայքում, ինչը վկայում է հիմնական բիզնեսի առողջ գործառնական էության մասին։ Ընկերության գործառնական մոդելը գեներացնում է զգալի կանխիկ, ինչը հնարավորություն է տալիս սպասարկել պարտքերը։`,
+/* 13 */ `Զուտ շահույթի գրաֆիկը ցույց է տալիս զգալի տատանումներ և վնասներ 2020-2023 թվականներին։ Կարևոր է հասկանալ, որ այս վնասները հիմնականում հաշվապահական ճշգրտումների, ակտիվների արժեզրկման և միավորման միանվագ ծախսերի հետևանք են, ոչ թե գործառնական դրամական միջոցների արտահոսքի։ 2024 թվականին արդեն նկատվում է անցում դեպի դրական զուտ շահույթ։`,
+/* 14 */ `Սա մեր վերլուծության կարևորագույն սլայդներից է։ Ֆինանսական կառավարման մեջ «շահույթը» և «դրամական հոսքը» նույնը չեն։ Չնայած ընկերությունը ցույց էր տալիս հաշվապահական զուտ վնաս, դրան զուգահեռ ձևավորում էր 3.3-ից մինչև 6.1 միլիարդ դոլար ազատ դրամական հոսք (FCF)։ Հենց այս դրամական հոսքն է թույլ տվել ընկերությանը գոյատևել և ակտիվորեն մարել պարտքերը։`,
+/* 15 */ `Ակտիվների (ROA) և սեփական կապիտալի (ROE) շահութաբերության գործակիցները գնահատում են ռեսուրսների օգտագործման արդյունավետությունը։ Բարձր ֆինանսական լծակի (պարտքի) պայմաններում ROE-ն դառնում է չափազանց զգայուն։ Մեր վերլուծությունը ցույց է տալիս, որ սեփական կապիտալի շահութաբերությունը բարելավելու համար առաջնահերթ է ոչ թե պարտքի ավելացումը, այլ գործառնական մարժայի բարձրացումը։`,
+/* 16 */ `DuPont մոդելը ROE-ն տրոհում է 3 բաղադրիչի․ զուտ շահույթի մարժա, ակտիվների շրջանառություն և ֆինանսական բազմապատկիչ (լծակ)։ Այս վերլուծությունը ղեկավարությանը հստակ ցույց է տալիս․ եթե ROE-ի աճը պայմանավորված է միայն ֆինանսական լծակով, դա բարձրացնում է ռիսկը։ Իրական կայուն աճի համար անհրաժեշտ է բարձրացնել ակտիվների շրջանառությունը և գործառնական մարժան։`,
+/* 17 */ `Պարտքի կառավարումը Warner Bros. Discovery-ի թիվ 1 ռազմավարական առաջնահերթությունն է։ Միավորումից հետո ընդհանուր պարտքը կազմում էր 48.6 միլիարդ դոլար։ Ագրեսիվ մարման ռազմավարության շնորհիվ այն նվազեցվել է մինչև 33.3 միլիարդ դոլար։ Net Debt / EBITDA գործակիցը աստիճանաբար մոտենում է թիրախային 2.5x-3.0x անվտանգ միջակայքին։`,
+/* 18 */ `Ազատ դրամական հոսքը (FCF) հանդիսանում է ընկերության ֆինանսական ամրության հիմնասյունը։ Տարեկան 3.3-ից 6+ միլիարդ դոլար ազատ դրամական միջոցներ գեներացնելու կարողությունը ընկերությանն ընձեռում է ռազմավարական ճկունություն․ այն թույլ է տալիս միաժամանակ մարել պարտքերը և ֆինանսավորել բովանդակության արտադրությունը։`,
+/* 19 */ `Altman Z′-Score մոդելով սնանկացման և ֆինանսական անկայունության ռիսկի գնահատումը ցույց է տալիս, որ բարձր պարտքային բեռի պատճառով ընկերությունը գտնվում է ուշադրության գոտում։ Սակայն, ի տարբերություն ավանդական ճգնաժամային ընկերությունների, FCF-ի բարձր մակարդակը չեզոքացնում է անմիջական սնանկացման ռիսկը։`,
+/* 20 */ `Այս ինտերակտիվ հաշվիչի միջոցով մենք կարող ենք մոդելավորել Net Debt / EBITDA հարաբերակցությունը։ Օրինակ, եթե զուտ պարտքը 28.3 մլրդ է, իսկ EBITDA-ն՝ 9.8 մլրդ, լծակը կազմում է 2.89x (միջին ռիսկ)։ Փոփոխելով թվերը՝ կարող ենք տեսնել, թե EBITDA-ի աճը կամ պարտքի մարումը ինչպես է ակնթարթորեն իջեցնում ֆինանսական ռիսկը։`,
+/* 21 */ `Ֆինանսական ճգնաժամի հաղթահարումը ընթանում է 4 հաջորդական փուլերով․ 1. Խնդրի ախտորոշում, 2. Անմիջական ֆինանսական կայունացում (կանխիկի պահպանում), 3. Կառուցվածքային վերափոխում (ծախսերի կրճատում ու սիներգիա) և 4. Երկարաժամկետ ռազմավարական աճ։ Ընկերությունն այժմ գտնվում է 3-րդ և 4-րդ փուլերի միջև։`,
+/* 22 */ `Ղեկավարության առջև դրված են 4 ռազմավարական լուծումներ․ պարտքի կառուցվածքի օպտիմալացում, կրկնվող վարչական ծախսերի կրճատում, բովանդակության արտադրության ROI-ի բարձրացում և Max սթրիմինգային հարթակի գլոբալ աճի ապահովում։ Այս 4 ուղղությունները պետք է գործեն ներդաշնակ։`,
+/* 23 */ `Ճգնաժամային իրացվելիության կառավարման լավագույն գործիքը 13-շաբաթյա դրամական հոսքերի պլանավորումն է (13-Week Cash Flow Forecast)։ Այն թույլ է տալիս շաբաթական կտրվածքով վերահսկել դրամական մուտքերն ու ելքերը, կանխատեսել հնարավոր ճեղքվածքները և ապահովել անխափան վճարունակություն։`,
+/* 24 */ `Այս սիմուլյատորում կարող եք ինքներդ շարժել սլայդերները․ փոխելով գործառնական մուտքերը, ելքերն ու կապիտալ ծախսերը (CapEx)՝ տեսնում ենք ազատ դրամական հոսքի (FCF) փոփոխությունը։ Սա ակնառու ցույց է տալիս, թե CapEx-ի նույնիսկ փոքր օպտիմալացումը որքան կանխիկ է ազատում պարտքի մարման համար։`,
+/* 25 */ `Պարտքի մարման մոդելը ցույց է տալիս ժամանակային հորիզոնը։ Եթե ընկերությունը տարեկան 3 միլիարդ դոլար FCF ուղղի պարտքի մարմանը, ապա 28.3 միլիարդ դոլար զուտ պարտքը ամբողջությամբ կմարվի մոտ 9.4 տարում։ Սա ապացուցում է ընկերության դրամական մոդելի իրական կենսունակությունը։`,
+/* 26 */ `Թվային վերափոխումը և արհեստական ինտելեկտի կիրառումը թույլ են տալիս բարձրացնել գործառնական արդյունավետությունը․ տվյալահեն որոշումներով կանխատեսել լսարանի նախասիրությունները, օպտիմալացնել մարքեթինգային ծախսերը և ավտոմատացնել վարչական գործընթացները։`,
+/* 27 */ `Ռազմավարության իրականացման վերահսկողության համար սահմանվել է KPI-ների համակարգ․ EBITDA Margin (շահութաբերություն), Net Debt/EBITDA (պարտք), FCF (իրացվելիություն), ROA (ակտիվներ), Churn Rate (բաժանորդների պահպանում) և Cost per Content (արտադրողականություն)։`,
+/* 28 */ `Ամփոփելով հետազոտությունը՝ կատարել ենք 4 հիմնական եզրակացություն․ 1․ Ֆինանսական կայունության հիմքը դրամական հոսքերի վերահսկումն է, 2․ Ծախսերի կրճատումը չպետք է վնասի բովանդակության որակին, 3․ Թվայնացումը որոշումների որակի բարձրացման բանալին է, 4․ Կարճաժամկետ խնայողությունները պետք է համադրվեն երկարաժամկետ աճի հետ։`,
+/* 29 */ `Հարգելի ներկաներ, առաջարկում եմ քննարկել 4 առանցքային հարց․ Արդյո՞ք ծախսերի կրճատումը կարող է վնասել բովանդակության որակին։ Ո՞րն է առաջնահերթ՝ պարտքի մարո՞ւմը, թե՞ սթրիմինգի ներդրումները։ Ինչպե՞ս գնահատել միավորման հաջողությունը։ Եվ որո՞նք պետք է լինեն Top-management-ի գլխավոր KPI-ները։`,
+/* 30 */ `Շնորհակալություն ուշադրության համար։ Warner Bros. Discovery-ի օրինակը ապացուցում է, որ ֆինանսական կայունությունը ձևավորվում է ոչ միայն թվերով, այլև ճիշտ, ժամանակին և համարձակ կառավարչական որոշումներով։ Պատրաստ եմ պատասխանել ձեր հարցերին։`
+];
+
+function render(){
+slides.forEach((s,i)=>s.classList.toggle('active',i===current));
+document.getElementById('pageNum').textContent=String(current+1).padStart(2,'0')+' / '+slides.length;
+document.getElementById('pageTitle').textContent=slides[current].dataset.title;
+document.getElementById('progress').style.width=((current+1)/slides.length*100)+'%';
+document.getElementById('commentTitle').textContent=slides[current].dataset.title;
+document.getElementById('commentText').textContent=comments[current]||'Այս էջի մեկնաբանությունը պատրաստման փուլում է։';
+document.getElementById('commentPanel').classList.remove('open');
+document.getElementById('commentToggle').textContent='▤ Մեկնաբանություն';
+window.scrollTo({top:0,behavior:'smooth'});
+setTimeout(drawCharts,100);
+}
+
+function goTo(n){current=Math.max(0,Math.min(slides.length-1,n));render();toggleOverview(false)}
+function nextSlide(){if(current<slides.length-1)goTo(current+1)}
+function previousSlide(){if(current>0)goTo(current-1)}
+function toggleComment(){
+const p=document.getElementById('commentPanel');
+p.classList.toggle('open');
+document.getElementById('commentToggle').textContent=p.classList.contains('open')?'✕ Փակել':'▤ Մեկնաբանություն';
+}
+function toggleTheme(){
+document.body.classList.toggle('light');
+document.getElementById('themeBtn').textContent=document.body.classList.contains('light')?'☾ Մութ':'☀ Լույս';
+drawCharts();
+}
+function toggleFullscreen(){
+if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();
+else document.exitFullscreen?.();
+}
+function toggleOverview(force){
+const el=document.getElementById('overview');
+if(force===false){el.classList.remove('open');return}
+el.classList.toggle('open');
+}
+
+document.getElementById('overviewGrid').innerHTML=slides.map((s,i)=>`<button class="overview-item" onclick="goTo(${i})"><small>ԷՋ ${String(i+1).padStart(2,'0')}</small><strong>${s.dataset.title}</strong></button>`).join('');
+
+document.addEventListener('keydown',e=>{
+if(e.key==='ArrowRight'||e.key===' '){if(!['INPUT'].includes(document.activeElement.tagName))nextSlide()}
+if(e.key==='ArrowLeft')previousSlide();
+if(e.key==='Escape'){document.getElementById('overview').classList.remove('open');document.getElementById('commentPanel').classList.remove('open')}
+});
+
+let touchStart=0;
+document.addEventListener('touchstart',e=>touchStart=e.changedTouches.screenX,{passive:true});
+document.addEventListener('touchend',e=>{
+const dx=e.changedTouches.screenX-touchStart;
+if(Math.abs(dx)>80){dx<0?nextSlide():previousSlide()}
+},{passive:true});
+
+/* Canvas charts */
+const years=['2020','2021','2022','2023','2024'];
+const chartData={
+revenueChart:{labels:years,sets:[{name:'Եկամուտ',values:[33.817,41.321,39.581,40.2,41.5]}]},
+ebitdaChart:{labels:years,sets:[{name:'EBITDA',values:[9.198,10.182,9.22,9.45,9.8]},{name:'Մարժա %',values:[27.2,24.6,23.3,23.5,23.6]}]},
+profitChart:{labels:years,sets:[{name:'Զուտ շահույթ',values:[-7.371,-3.126,-11.49,-1.2,3.45]}]},
+cashChart:{labels:years,sets:[{name:'Զուտ շահույթ',values:[-7.371,-3.126,-11.49,-1.2,3.45]},{name:'FCF',values:[3.3,6.1,5.1,5.7,6.05]}]},
+debtChart:{labels:years,sets:[{name:'Ընդհանուր պարտք',values:[48.6,43.5,41.5,37.4,33.3]}]},
+fcfChart:{labels:years,sets:[{name:'FCF',values:[3.3,6.1,5.1,5.7,6.05]}]},
+competitionChart:{labels:['Streaming','Գովազդ','Բովանդակություն','Միջազգային'],sets:[{name:'Ճնշում',values:[85,70,90,65]}]}
+};
+
+function drawChart(id,config){
+const canvas=document.getElementById(id);if(!canvas)return;
+const rect=canvas.getBoundingClientRect();const w=Math.max(300,rect.width),h=250;
+const dpr=window.devicePixelRatio||1;canvas.width=w*dpr;canvas.height=h*dpr;
+const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);
+const light=document.body.classList.contains('light');
+const text=light?'#536274':'#a8b5c5',grid=light?'rgba(0,0,0,0.1)':'rgba(217,182,111,0.15)';
+const colors=['#d9b66f','#4c9bd6','#63c5a0'];
+const all=config.sets.flatMap(s=>s.values);
+let min=Math.min(0,...all),max=Math.max(0,...all);
+if(min===max)max=min+1;
+const pad={l:43,r:15,t:15,b:35},cw=w-pad.l-pad.r,ch=h-pad.t-pad.b;
+const y=v=>pad.t+(max-v)/(max-min)*ch;
+ctx.font='10px DM Sans';ctx.strokeStyle=grid;ctx.fillStyle=text;ctx.lineWidth=1;
+for(let i=0;i<=4;i++){
+const val=min+(max-min)*i/4,yy=y(val);
+ctx.beginPath();ctx.moveTo(pad.l,yy);ctx.lineTo(w-pad.r,yy);ctx.stroke();
+ctx.fillText(val.toFixed(1),3,yy+4);
+}
+const n=config.labels.length,group=cw/n;
+config.labels.forEach((lab,i)=>{ctx.fillStyle=text;ctx.textAlign='center';ctx.fillText(lab,pad.l+group*(i+.5),h-9)});
+config.sets.forEach((si,siIdx)=>{
+const color=colors[siIdx%colors.length];
+si.values.forEach((v,i)=>{
+const bw=Math.min(34,group*.48),x=pad.l+group*(i+.5)-bw/2;
+const zero=y(0),yy=y(v);
+ctx.fillStyle=color;
+ctx.beginPath();ctx.roundRect(x,Math.min(yy,zero),bw,Math.max(2,Math.abs(zero-yy)),5);ctx.fill();
+ctx.fillStyle=text;ctx.textAlign='center';ctx.font='10px DM Sans';
+ctx.fillText(v.toFixed(1),x+bw/2, v>=0?yy-7:yy+15);
+});
+});
+}
+
+function drawCharts(){Object.entries(chartData).forEach(([id,c])=>drawChart(id,c))}
+window.addEventListener('resize',drawCharts);
+
+/* Financial leverage calculator */
+function updateRisk(){
+const debt=Math.max(0,Number(document.getElementById('debtInput').value)||0);
+const cash=Math.max(0,Number(document.getElementById('cashInput').value)||0);
+const ebitda=Math.max(.01,Number(document.getElementById('ebitdaInput').value)||.01);
+const net=Math.max(0,debt-cash),ratio=net/ebitda;
+document.getElementById('netDebtResult').textContent=net.toFixed(2);
+document.getElementById('leverageResult').textContent=ratio.toFixed(2)+'x';
+let level=ratio<2?'Ցածր':ratio<4?'Միջին':ratio<6?'Բարձր':'Շատ բարձր';
+document.getElementById('riskResult').textContent=level;
+document.getElementById('riskExplain').textContent=ratio<2?'Մոդելային գնահատմամբ՝ պարտքային բեռը համեմատաբար կառավարելի է։':ratio<4?'Մոinternal գնահատմամբ՝ անհրաժեշտ է վերահսկել պարտքի սպասարկումը և դրամական հոսքերը։':'Մոդելային գնահատմամբ՝ պարտքային ծանրաբեռնվածությունը բարձր է, և անհրաժեշտ է մշակել պարտքի նվազեցման ծրագիր։';
+}
+['debtInput','cashInput','ebitdaInput'].forEach(id=>document.getElementById(id).addEventListener('input',updateRisk));
+updateRisk();
+
+/* Cash flow simulator */
+function updateCash(){
+const a=+inflow.value,b=+outflow.value,c=+capex.value;
+inflowVal.textContent=a.toFixed(1);outflowVal.textContent=b.toFixed(1);capexVal.textContent=c.toFixed(1);
+const op=a-b,fcf=op-c;
+operatingResult.textContent=op.toFixed(2);
+fcfResult.textContent=fcf.toFixed(2);
+cashMessage.textContent=fcf>0?'Դրական ազատ դրամական հոսք․ կազմակերպությունն ունի լրացուցիչ ֆինանսական ռեսուրսներ։':fcf===0?'Դրամական հոսքը հավասարակշռված է․ լրացուցիչ ռեսուրս չի ձևավորվում։':'Բացասական ազատ դրամական հոսք․ անհրաժեշտ է վերանայել ծախսերը, ներդրումների ժամանակացույցը կամ ֆինանսավորման աղբյուրները։';
+}
+['inflow','outflow','capex'].forEach(id=>document.getElementById(id).addEventListener('input',updateCash));
+updateCash();
+
+/* Debt repayment calculator */
+function updateRepay(){
+const debt=Math.max(0,+repayDebt.value||0),cash=Math.max(.01,+repayCash.value||.01);
+repayYears.textContent=(debt/cash).toFixed(1)+' տարի';
+}
+['repayDebt','repayCash'].forEach(id=>document.getElementById(id).addEventListener('input',updateRepay));
+updateRepay();
+
+render();
+</script>
+</body>
+</html>
